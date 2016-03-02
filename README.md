@@ -27,11 +27,11 @@ Now this element will fire drag events. Listen using addEventListener. The `deta
 
 Call `stopDragEvent` when you don't need the element to fire drag event as this event
 
-	stopOverscrollEvent(d);
+	stopDragEvent(d);
 
-`firesDragEvent` can be used to check if an element is firing overscroll events.
+`firesDragEvent` can be used to check if an element is firing drag events.
 
-	firesOverscrollEvent(d); //true
+	firesDragEvent(d); //true
 
 `drag.js` is the original file and uses `const`, `let` and `arrow functions` which may not be supported in all browsers. `drag-transformed.js` is genetared using [babeljs](https://babeljs.io/) and will work in most browsers.
 
