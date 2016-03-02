@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DragJS Example</title>
+	<script src="https://code.jquery.com/pep/0.4.1/pep.js"></script>
+	<script src="drag-transformed.js"></script>
+	<style>
+		body {
+			overflow: hidden;
+		}
+		.box {
+			background-color: red;
+			color: white;
+			height: 224px;
+			width: 224px;
+			margin-bottom: 16px;
+			padding: 16px;
+			-webkit-user-select: none;
+			user-select: none;
+			touch-action: none;
+			will-change: transform;
+		}
+	</style>
+	</head>
+	<body>
+		<div class="box" touch-action="none">Drag me</div>
+		<div class="box" touch-action="none">Drag me too</div>
+		<div class="box" touch-action="none">Drag us together with touch</div>
+		<script>
+			'use strict';
+			function handleDrag(e) {
+				var x = 0;
+				var y = 0;
+				var detail = e.detail;
+				if (detail.state !== 'end') {
+					x = detail.dx;
+					y = detail.dy;
+				}
+				this.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+			};
+			var boxes = document.querySelectorAll('.box');
+			for (var i = 0; i < boxes.length; i++) {
+				var box = boxes[i];
+				getDragEvent(box);
+				box.addEventListener('drag', handleDrag);
+			}
+		</script>
+	</body>
+</html>
