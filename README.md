@@ -15,14 +15,14 @@ Call `getDragEvent` and pass an element as argumenmt
 	getDragEvent(d);
 
 Now this element will fire drag events. Listen using addEventListener. The `detail` of event has following properties:
-Property | Type | Description
-- | - | -
-state | String | 'start', 'drag' or 'end'
-startX | Number | x coordinate where drag started in pixel
-startY | Number | y coordinate where drag started in pixel
-dx | Number | x coordinate of drag in pixel
-dy | Number | y coordinate of drag in pixel
-sourceEvent | Object | Original Pointer Event which is used it calculate drag
+| Property | Type | Description |
+| --- | --- | --- |
+| state | String | 'start', 'drag' or 'end' |
+| startX | Number | x coordinate where drag started in pixel |
+| startY | Number | y coordinate where drag started in pixel |
+| dx | Number | x coordinate of drag in pixel |
+| dy | Number | y coordinate of drag in pixel |
+| sourceEvent | Object | Original Pointer Event which is used it calculate drag |
 
 Call `stopDragEvent` when you don't need the element to fire drag event as this event
 
