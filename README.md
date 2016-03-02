@@ -15,6 +15,7 @@ Call `getDragEvent` and pass an element as argumenmt
 	getDragEvent(d);
 
 Now this element will fire drag events. Listen using addEventListener. The `detail` of event has following properties:
+
 | Property | Type | Description |
 | --- | --- | --- |
 | state | String | 'start', 'drag' or 'end' |
