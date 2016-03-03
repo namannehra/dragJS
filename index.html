@@ -34,7 +34,16 @@
 				var x = 0;
 				var y = 0;
 				var detail = e.detail;
-				if (detail.state !== 'end') {
+				var dragId = detail.sourceEvent.pointerId;
+				if (this.dragingId !== undefined && this.dragingId !== dragId) {//check to avoid multiple drag on same element (Example: draging same element with 2 fingers)
+					return;
+				}
+				if (detail.state === 'start') {
+					this.dragingId = detail.sourceEvent.pointerId;
+				}
+				if (detail.state === 'end') {
+					delete this.dragingId;
+				} else {
 					x = detail.dx;
 					y = detail.dy;
 				}
