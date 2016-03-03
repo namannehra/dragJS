@@ -33,6 +33,7 @@
 			hasEvents = true;
 			document.addEventListener('pointermove', pointermove);
 			document.addEventListener('pointerup', pointerup);
+			document.addEventListener('pointercancel', pointerup);
 		}
 	};
 	const pointermove = e => {
