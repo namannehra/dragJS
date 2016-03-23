@@ -1,5 +1,5 @@
 # dragJS
-JavaScript functions for listening to `drag` events.
+JavaScript functions for listening to `PointerDrag` events.
 
 [Example](https://namannehra.github.io/dragJS/)
 
@@ -9,10 +9,10 @@ Load the file using script tag in head
 	<script src="drag-transformed.js"></script>
 
 ## Use
-Call `getDragEvent` and pass an element as argumenmt
+Call `PointerDragEvent.start` and pass an element as argumenmt
 
 	var d = document.querySelector('#d');
-	getDragEvent(d);
+	PointerDragEvent.start(d);
 
 Now this element will fire drag events. Listen using addEventListener. The `detail` of event has following properties:
 
@@ -25,13 +25,13 @@ Now this element will fire drag events. Listen using addEventListener. The `deta
 | dy | Number | y coordinate of drag in pixel |
 | sourceEvent | Object | Original Pointer Event which is used it calculate drag |
 
-Call `stopDragEvent` when you don't need the element to fire drag event as this event
+Call `PointerDragEvent.stop` when you don't need the element to fire drag event as this event
 
-	stopDragEvent(d);
+	PointerDragEvent.stop(d);
 
-`firesDragEvent` can be used to check if an element is firing drag events.
+`PointerDragEvent.fires` can be used to check if an element is firing drag events.
 
-	firesDragEvent(d); //true
+	PointerDragEvent.fires(d); //true
 
 `drag.js` is the original file and uses `const`, `let` and `arrow functions` which may not be supported in all browsers. `drag-transformed.js` is genetared using [babeljs](https://babeljs.io/) and will work in most browsers.
 

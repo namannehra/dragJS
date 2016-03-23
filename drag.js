@@ -1,13 +1,12 @@
 (() => {
 	'use strict';
-	if ('getDragEvent' in window) return;
-	const des = 'dragEventProperties',
-				sym = 'Symbol' in window ? Symbol(des) : `_${des}`,
+	if ('PointerDragEvent' in window) return;
+	const prop = '_PointerDragEventProperties',
 				pointers = {};
 	let hasEvents = false,
 			activePointers = 0;
 	const check = (e, f) => {
-		if (!e || e.nodeType !== 1) throw new TypeError(`Failed to execute '${f}' with '${e}': parameter 1 should be a node with nodeType equal to 1`);
+		if (!e || e.nodeType !== 1) throw new TypeError(`Failed to execute '${f}': The callback provided as parameter 1 is not a node with nodeType 1`);
 	};
 	const dispatch = (e, pointer, state) => {
 		pointer.target.dispatchEvent(new CustomEvent('drag', {
@@ -39,7 +38,7 @@
 	const pointermove = e => {
 		const pointer = pointers[e.pointerId];
 		if (pointer === undefined) return;
-		if (pointer.target[sym] === undefined) {
+		if (pointer.target[prop] === undefined) {
 			delete pointers[e.pointerId];
 			return;
 		}
@@ -59,19 +58,21 @@
 		}
 		if (!pointer.start) dispatch(e, pointer, 'end');
 	};
-	window.getDragEvent = e => {
-		check(e, 'getDragEvent');
-		if (sym in e) return;
-		e[sym] = true;
-		e.addEventListener('pointerdown', pointerdown);
-	};
-	window.stopDragEvent = e => {
-		check(e, 'stopDragEvent');
-		delete e[sym];
-		e.removeEventListener('pointerdown', pointerdown);
-	};
-	window.firesDragEvent = e => {
-		check(e, 'firesDragEvent');
-		return sym in e;
+	window.PointerDragEvent = {
+		start(e) {
+			check(e, 'start');
+			if (prop in e) return;
+			e[prop] = true;
+			e.addEventListener('pointerdown', pointerdown);
+		},
+		stop(e) {
+			check(e, 'stop');
+			delete e[prop];
+			e.removeEventListener('pointerdown', pointerdown);
+		},
+		fires(e) {
+			check(e, 'fires');
+			return prop in e;
+		}
 	};
 })();
